@@ -2,7 +2,9 @@ const mysql = require("mysql2")
 let data = []
 const express = require("express")
 const app = express();
+const path = require("path")
 app.set("view engine","ejs");
+app.use('/img', express.static(path.join(__dirname, 'img')));
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
