@@ -17,19 +17,18 @@
     flex-direction: row;
 }
 @media (max-width: 576px) {
-    .kitap_container {
-        flex-direction: column;
-    }
-}
-@media (max-width: 576px) {
     .filtre {
         width: 98%;
         margin-bottom: 10px;
         margin-left: 1px;
     }
-}
-@media (max-width: 576px) {
+    .kitap_container {
+        flex-direction: column;
+    }
     .tum_kitaplar {
+        width: 100%;
+    }
+    .dropdown-menu {
         width: 100%;
     }
 }
