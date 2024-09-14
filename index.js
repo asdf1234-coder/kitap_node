@@ -37,9 +37,7 @@ mongoose.connect(dbUri, {
     yazar: String,
     ucret: Number
   });
-
   const kitaps = mongoose.model('Kullanici', KullaniciSchema, 'kitaplar');
-
   kitaps.find({})
     .then((veriler) => {
       if (veriler.length === 0) {
