@@ -1,0 +1,85 @@
+.navbar {
+    border-bottom: 1px solid #000;
+    opacity: 0.96;
+}
+.tum_kitaplar {
+    border: 0;
+    margin: 0;
+}
+.card-tutar {
+    font-weight: 500;
+}
+.dropdown-menu {
+    width: 25rem;
+}
+.kitap_container {
+    display: flex;
+    flex-direction: row;
+}
+@media (max-width: 576px) {
+    .kitap_container {
+        flex-direction: column;
+    }
+}
+@media (max-width: 576px) {
+    .filtre {
+        width: 98%;
+        margin-bottom: 10px;
+        margin-left: 1px;
+    }
+}
+@media (max-width: 576px) {
+    .tum_kitaplar {
+        width: 100%;
+    }
+}
+.d-block {
+    border-radius: 5px;
+}
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+.tum_kitaplar {
+    width: 100%;
+    height: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 1px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+.kitap {
+    width: 159px;
+    height: 250px;
+    border: 1px solid #000;
+    margin-right: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    position: relative;
+}
+.kitap_container {
+    display: flex;
+}
+.flex {
+    display: flex;
+}
+.xxx {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    height: 25px;
+}
+.card-yazar {
+    margin: 0;
+}
+.card-tur {
+    margin: 0;
+}

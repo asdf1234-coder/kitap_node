@@ -5,123 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kitap detay</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="kitapDetay4.css"/>
-    <style>
-        .container {
-            display: flex;
-            border: 1px solid #000;
-            padding: 5px;
-        }
-        .img_container {
-            padding: 5px;
-            border: 1px solid #000;
-            width: 200px;
-            margin-right: 5px;
-        }
-        .text_container {
-            border: 1px solid #000;
-            width: 100%;
-            padding: 5px;
-        }
-        .baslik {
-            display: flex;
-            justify-content: center;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .yazar_yayinevi {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        .tur {
-            width: 110px;
-        }
-        .yazar {
-            margin-right: 5px;
-            width: 100px;
-        }
-        .aciklama {
-            display: flex;
-            justify-content: center;
-        }
-        .yayinevi_bilgi {
-            margin-right: 5px;
-            width: 80px;
-        }
-        .flex {
-            display: flex;
-        }
-        .duzenle {
-            width: 150px;
-            height: 30px;
-            background-color: aqua;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .yazar2 {
-            margin-right: 5px;
-        }
-        .yayinevi_bilgi2 {
-            margin-right: 5px;
-        }
-        .container_detay {
-            border: 1px solid #000;
-            display: flex;
-        }
-        .bilgi {
-            display: flex;
-            flex-direction: row;
-        }
-        .yazar_yayinevi {
-            width: 100%;
-        }
-        .par {
-            display: none;
-        }
-        @media (max-width: 576px) {
-            .container_detay {
-                flex-direction: column;
-            }
-            .img_container {
-                border: 0;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .resim {
-                border: 0;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .text_container {
-                border: 0;
-            }
-            .cizgi {
-                display: none;
-            }
-            .yazar_yayinevi {
-                flex-direction: column;
-                justify-content: center;
-                width: 100%;
-            }
-            .bilgi {
-                margin-right: auto;
-                margin-left: auto;
-            }
-            .tur {
-                display: flex;
-                justify-content: center;
-                width: 100%;
-            }
-            .par {
-                display: block;
-            }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../public/kitapDetay4.css"/>
+    <link rel="icon" href="../public/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <% kitaplar.forEach(kitap => { %>
@@ -134,11 +19,11 @@
                     <div class="baslik">
                         <div><%= kitap.isim %></div>
                     </div>
-                    <div class="yazar_yayinevi">
-                        <div class="yazar2 bilgi"><%= kitap.yazar %><pre> </pre></div>
+                    <div class="w-100" style="display: flex;">
+                        <div class="mr-1 bilgi"><%= kitap.yazar %><pre> </pre></div>
                         <div class="cizgi bilgi"> | </div>
                         <p class="par"> </p>
-                        <div class="yayinevi_bilgi2 bilgi"><pre> </pre><%= kitap.yayinevi %><pre> </pre></div>
+                        <div class="mr-1 bilgi"><pre> </pre><%= kitap.yayinevi %><pre> </pre></div>
                         <div class="cizgi bilgi"> | </div>
                         <p class="par"> </p>
                         <div class="tur"><%= kitap.tur %></div>

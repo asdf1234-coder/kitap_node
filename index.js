@@ -2,12 +2,13 @@
 const mongoose = require('mongoose')
 let data = []
 const express = require("express")
-const http = require('http');
+const http = require('http')
 const net = require('net');
 const app = express();
 const path = require("path")
 app.set("view engine","ejs");
 app.use('/img', express.static(path.join(__dirname, 'img')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 require('dotenv').config();
 
 // Bağlantı URI'nız
@@ -84,6 +85,9 @@ mongoose.connect(dbUri, {
                 kitaplar: veriler
             });
         })
+        app.use((req, res, next) => {
+          res.status(404).render("404");
+        });
         // Çevre değişkeninden port numarasını al, eğer varsa
         findAvailablePort(initialPort, (port) => {
           app.listen(port, () => {

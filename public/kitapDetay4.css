@@ -1,0 +1,81 @@
+.img_container {
+    padding: 5px;
+    border: 1px solid #000;
+    width: 200px;
+    margin-right: 5px;
+}
+.text_container {
+    border: 1px solid #000;
+    width: 100%;
+    padding: 5px;
+}
+.baslik {
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.yazar_yayinevi {
+    display: flex;
+    margin-bottom: 20px;
+}
+.tur {
+    width: 110px;
+}
+.aciklama {
+    display: flex;
+    justify-content: center;
+}
+.container_detay {
+    border: 1px solid #000;
+    display: flex;
+}
+.bilgi {
+    display: flex;
+    flex-direction: row;
+}
+.yazar_yayinevi {
+    width: 100%;
+}
+.par {
+    display: none;
+}
+@media (max-width: 576px) {
+    .container_detay {
+        flex-direction: column;
+    }
+    .img_container {
+        border: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .resim {
+        border: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .text_container {
+        border: 0;
+    }
+    .cizgi {
+        display: none;
+    }
+    .yazar_yayinevi {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+    .bilgi {
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .tur {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .par {
+        display: block;
+    }
+}
