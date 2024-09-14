@@ -1,8 +1,5 @@
-// const mysql = require("mysql2")
 const mongoose = require('mongoose')
-let data = []
 const express = require("express")
-const http = require('http')
 const net = require('net');
 const app = express();
 const path = require("path")
@@ -11,33 +8,8 @@ app.use('/img', express.static(path.join(__dirname, 'img')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 require('dotenv').config();
 
-// Bağlantı URI'nız
 const dbUri = process.env.DB_URI;
-/*const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'kitap_php'
-});
-connection.query('SELECT * FROM kitaplar', (error, results, fields) => {
-    app.use("/kitap/:id", function(req, res){
-        const x = req.params.id
-        res.render("kitap_detay",{
-            url: x,
-            kitaplar: results
-        })
-    })
-    app.use("/anasayfa", function(req, res){
-        res.render("anasayfa",{
-            kitaplar: results
-        });
-    })
-    
-    app.listen(3001, () => {
-        console.log("dinleniyor")
-    })
-});
-connection.end();*/
+
 function findAvailablePort(startPort, callback) {
   const server = net.createServer();
   
@@ -88,16 +60,11 @@ mongoose.connect(dbUri, {
         app.use((req, res, next) => {
           res.status(404).render("404");
         });
-        // Çevre değişkeninden port numarasını al, eğer varsa
         findAvailablePort(initialPort, (port) => {
           app.listen(port, () => {
             console.log(`dinleniyor port: ${port}`);
           });
         });
-        /*app.listen(0, () => {
-            console.log(`dinleniyor port: ${port}`)
-        })*/
-        // console.log('Kullanıcılar:', veriler[0]['isim']);
       }
       mongoose.connection.close();
     })
