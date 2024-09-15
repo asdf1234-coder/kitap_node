@@ -76,6 +76,10 @@
                 <div class="top">!</div>
                 <div>Filtreleme kriterlerinizi yazmayı bitirmeden sonuçları göz ardı ediniz, aksi takdirde sonuçlar yanıltıcı olabilir.</div>
             </div>
+            <div class="uyari">
+                <div class="top">!</div>
+                <div>Yayınevi filtrelemesini 'yayınları' kelimesini yazmadan kullanınız.</div>
+            </div>
         </form>
         <div class="tum_kitaplar border mx-1 flex">
             <% kitaplar.forEach(kitap => { %>
@@ -91,7 +95,7 @@
                     <a href="/kitap/<%= kitap.id %>"><img src="../img/<%= kitap.resim %>" class="card-img-top mb-0 img-thumbnail" alt="kitap"></a>
                     <div class="card-body mt-0 p-0">
                         <p class="card-text text-center mb-0 px-1 card-tutar"><%= kitap.ucret %> TL</p>
-                        <p class="card-text text-center mb-0 px-1"><%= kitap.isim %></p>
+                        <p class="card-text text-center mb-0 px-1 card-isim"><%= kitap.isim %></p>
                     </div>
                 </div>
             <% }) %>
