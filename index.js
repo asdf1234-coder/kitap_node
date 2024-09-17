@@ -4,6 +4,7 @@ const net = require('net');
 const session = require('express-session');
 const app = express();
 const path = require("path")
+const { Types } = mongoose;
 app.set("view engine","ejs");
 app.use('/img', express.static(path.join(__dirname, 'img')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -16,7 +17,12 @@ app.use(session({
   saveUninitialized: true
 }));
 const dbUri = process.env.DB_URI;
-
+mongoose.connect(dbUri, {
+}).then(() => {
+  console.log('MongoDB bağlantısı başarılı');
+}).catch(err => {
+  console.error('MongoDB bağlantı hatası:', err);
+});
 function findAvailablePort(startPort, callback) {
   const server = net.createServer();
   
@@ -31,6 +37,7 @@ function findAvailablePort(startPort, callback) {
 }
 const initialPort = parseInt(3000, 10);
 const KullaniciSchema = new mongoose.Schema({
+  _id: String,
   id: Number,
   isim: String,
   resim: String,
@@ -43,7 +50,7 @@ const AdminSchema = new mongoose.Schema({
   admin_adi: String,
   admin_sifre: String
 });
-const Kullanici = mongoose.models.Kullanici || mongoose.model('Kullanici', KullaniciSchema, 'kitaplar');
+const Kitap = mongoose.models.Kitap || mongoose.model('Kullanici', KullaniciSchema, 'kitaplar');
 const Admin = mongoose.models.Admin || mongoose.model('Admin', AdminSchema, 'admin');
 module.exports = mongoose.model('Admin', AdminSchema);
 async function baglanti() {
@@ -52,14 +59,14 @@ async function baglanti() {
     await mongoose.connect(dbUri);
     console.log('MongoDB bağlantısı başarılı!');
     
-    const veriler = await Kullanici.find({});
+    const veriler = await Kitap.find({});
     
     return veriler.length === 0 ? "bos" : veriler;
   } catch (error) {
     console.error('Veri çekme hatası:', error);
     return 'Veri çekme hatası';
   } finally {
-    mongoose.connection.close();
+    // mongoose.connection.close();
   }
 }
 async function baglantiAdmin() {
@@ -75,7 +82,7 @@ async function baglantiAdmin() {
     console.error('Veri çekme hatası:', error);
     return 'Veri çekme hatası';
   } finally {
-    mongoose.connection.close();
+    // mongoose.connection.close();
   }
 }
 function findAvailablePort(startPort, callback) {
@@ -145,6 +152,26 @@ app.get('/admin', async (req, res) => {
     }
   } else {
       res.status(401).send('Yetkisiz erişim');
+  }
+});
+app.get('/admin/delete/:id_kitap', async (req, res) => {
+  const id_kitap = req.params.id_kitap;
+  const kitap = await Kitap.findById(id_kitap);
+  const isValidId = mongoose.Types.ObjectId.isValid(id_kitap);
+  /*if (!isValidId) {
+    return res.send('Geçersiz kitap ID.');
+  }
+  if (!kitap) {
+    return res.send('Kitap bulunamadı.');
+  }*/
+  try {
+      const result = await Kitap.deleteOne({ isim: id_kitap });
+      if (result.deletedCount === 0) {
+        return res.send('eşleşen kitap bulunamadı.');
+      }
+      res.redirect('/admin');
+  } catch (error) {
+      res.send(`olamdı: ${error}`);
   }
 });
 

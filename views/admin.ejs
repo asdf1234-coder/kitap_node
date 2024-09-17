@@ -98,6 +98,10 @@
                         <p class="card-text text-center mb-0 px-1 card-tutar"><%= kitap.ucret %> TL</p>
                         <p class="card-text text-center mb-0 px-1 card-isim"><%= kitap.isim %></p>
                     </div>
+                    <div class="flex mx-auto mb-1">
+                        <a href="/admin/delete/<%= kitap.isim %>"><button type="button" class="btn btn-outline-danger m-1" id="<%= kitap.id %>">Sil</button></a>
+                        <button type="button" class="btn btn-outline-warning m-1" id="<%= kitap.id %>">Düzenle</button>
+                    </div>
                 </div>
             <% }) %>
         </div>
