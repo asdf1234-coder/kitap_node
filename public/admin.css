@@ -1,0 +1,28 @@
+/* Genel ayarlar */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input, textarea, select {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    margin: 0 0 1rem 0;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: #0056b3;
+}

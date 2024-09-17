@@ -133,9 +133,16 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.get('/admin', (req, res) => {
+app.get('/admin', async (req, res) => {
   if (req.session.authenticated) {
-      res.send('Admin Paneline Hoşgeldiniz!');
+    try {
+      const kitaplar = await baglanti();
+      res.render("admin", {
+        kitaplar: kitaplar
+      });
+    } catch (error) {
+      res.status(500).send('Sunucu hatası');
+    }
   } else {
       res.status(401).send('Yetkisiz erişim');
   }
