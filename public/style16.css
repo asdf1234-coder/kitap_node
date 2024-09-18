@@ -54,15 +54,6 @@ a {
     flex-wrap: wrap;
     padding: 5px;
 }
-.kitap {
-    width: 159px;
-    height: 250px;
-    border: 1px solid #000;
-    margin-right: 5px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    position: relative;
-}
 .kitap_container {
     display: flex;
 }

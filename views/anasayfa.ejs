@@ -43,8 +43,7 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search" action="index.php" method="get">
-                    <input class="form-control me-2 h-75" type="search" placeholder="Ara" aria-label="Search" name="q">
-                    <button class="btn btn-outline-dark col-3 h-75" type="submit">Ara</button>
+                    <a href="/login" class="btn btn-outline-dark">Admin</a>
                 </form>
             </div>
         </div>
@@ -84,7 +83,7 @@
         <div class="tum_kitaplar border mx-1 flex">
             <% kitaplar.forEach(kitap => { %>
                 <div class="card my-1 mx-1 p-0 ana" style="width: 10rem;">
-                    <div class="card-body mt-0 p-0">
+                    <div class="card-body mt-0 p-0" style="display: none;">
                         <div class="xxx">
                             <p class="card-text text-center mb-0 px-1 card-yayin"><%= kitap.yayinevi %></p>
                             <p>yayınları</p>

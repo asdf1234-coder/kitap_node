@@ -37,6 +37,15 @@ function findAvailablePort(startPort, callback) {
 }
 const initialPort = parseInt(3000, 10);
 const KullaniciSchema = new mongoose.Schema({
+  id: Number,
+  isim: String,
+  resim: String,
+  yayinevi: String,
+  tur: String,
+  yazar: String,
+  ucret: Number
+});
+const KullaniciSchema2 = new mongoose.Schema({
   _id: String,
   id: Number,
   isim: String,
@@ -50,7 +59,8 @@ const AdminSchema = new mongoose.Schema({
   admin_adi: String,
   admin_sifre: String
 });
-const Kitap = mongoose.models.Kitap || mongoose.model('Kullanici', KullaniciSchema, 'kitaplar');
+const Kitap = mongoose.models.Kitap || mongoose.model('Kitap', KullaniciSchema, 'kitaplar');
+const Kitap2 = mongoose.models.Kitap2 || mongoose.model('Kitap2', KullaniciSchema2, 'kitaplar');
 const Admin = mongoose.models.Admin || mongoose.model('Admin', AdminSchema, 'admin');
 module.exports = mongoose.model('Admin', AdminSchema);
 async function baglanti() {
@@ -156,22 +166,42 @@ app.get('/admin', async (req, res) => {
 });
 app.get('/admin/delete/:id_kitap', async (req, res) => {
   const id_kitap = req.params.id_kitap;
-  const kitap = await Kitap.findById(id_kitap);
+  const kitap = await Kitap2.findById(id_kitap);
   const isValidId = mongoose.Types.ObjectId.isValid(id_kitap);
-  /*if (!isValidId) {
-    return res.send('Geçersiz kitap ID.');
-  }
-  if (!kitap) {
-    return res.send('Kitap bulunamadı.');
-  }*/
   try {
-      const result = await Kitap.deleteOne({ isim: id_kitap });
+      const result = await Kitap2.deleteOne({ isim: id_kitap });
       if (result.deletedCount === 0) {
         return res.send('eşleşen kitap bulunamadı.');
       }
       res.redirect('/admin');
   } catch (error) {
       res.send(`olamdı: ${error}`);
+  }
+});
+
+app.get('/admin/duzenle/:isim/:yayin/:yazar/:tur', async (req, res) => {
+  const isim = req.params.isim;
+  const yayin = req.params.yayin;
+  const yazar = req.params.yazar;
+  const tur = req.params.tur;
+
+  try {
+    const kitap = await Kitap.findOne({ isim: isim });
+
+    if (!kitap) {
+      return res.status(404).send('Kitap bulunamadı');
+    }
+
+    kitap.yayin = yayin;
+    kitap.yazar = yazar;
+    kitap.tur = tur;
+
+    await kitap.save();
+
+    res.redirect('/admin');
+  } catch (error) {
+    console.error(error);
+    res.send("Güncellenemedi: " + error.message);
   }
 });
 
